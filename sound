@@ -6,7 +6,8 @@ import AVFoundation
 
 // -------------------------------------------------------
 // put this function anywhere after the class, ex: class FirstViewController: UIViewController {
-// This function will play the sound in the background too
+// This function will play the sound in the background too but you have to enable this feature by:
+Capabilities >> Background Modes >> Modes: Audio, AirPlay, and Picture in Picture
 // -------------------------------------------------------
  func playAudio(name_file:String)
     {
