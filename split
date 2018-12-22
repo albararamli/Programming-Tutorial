@@ -1,0 +1,8 @@
+// to split string to array by specific divider such as this symbol ":"
+
+var inx = "this is : an example to : show something!"
+var outx = inx.components(separatedBy: ":")
+
+// 1st element outx[0]
+// 2nd element outx[1]
+// 3rd element outx[2]
