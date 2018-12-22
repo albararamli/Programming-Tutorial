@@ -1,0 +1,17 @@
+// SSH conection, put IP instead of x.x.x.x
+ssh -i ~/Desktop/aws2.pem ec2-user@x.x.x.x
+
+// change the owner of folder, so Apache and PHP will be able to make and edit files
+sudo chown -R apache:apache /var/www/html/xxx
+
+// change the owner of folder, so FTP apps will be able to make and edit files
+sudo chown -R ec2-user /var/www/html/xxx
+
+// Find files that larger than 500M
+sudo find / -xdev -type f -size +500M
+
+// Finds the logs files of Apache PHP
+sudo ls /var/log/httpd/ -lh
+
+// Find the size used/available in the HD
+df -h
