@@ -1,4 +1,7 @@
 // -------------------------------------------------------
+// You have to enable this feature by:
+// Capabilities >> Background Modes >> Push Notifications 
+// -------------------------------------------------------
 // In the view controller file put this import
 // -------------------------------------------------------
 import UserNotifications
@@ -6,8 +9,9 @@ import UserNotifications
 
 // -------------------------------------------------------
 // put this function anywhere after the class, ex: class FirstViewController: UIViewController {
-// This function will play the sound in the background too
 // -------------------------------------------------------
+
+    // push noti now
     func noti_show(x1: String, x2:String, x3:String)
     {
         let content = UNMutableNotificationContent()
@@ -28,7 +32,8 @@ import UserNotifications
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
-    
+  
+    // push noti later
     func noti_show_t(x1: String, x2:String, x3:String, ttt:String)
     {
         
