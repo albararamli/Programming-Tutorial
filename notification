@@ -1,0 +1,86 @@
+// -------------------------------------------------------
+// In the view controller file put this import
+// -------------------------------------------------------
+import UserNotifications
+
+
+// -------------------------------------------------------
+// put this function anywhere after the class, ex: class FirstViewController: UIViewController {
+// This function will play the sound in the background too
+// -------------------------------------------------------
+    func noti_show(x1: String, x2:String, x3:String)
+    {
+        let content = UNMutableNotificationContent()
+        content.title = x1
+        content.subtitle = x2
+        content.body = x3
+        content.badge = 1
+        
+        var datex = DateComponents()
+        datex.hour = 19
+        datex.minute = 16
+        
+        //let trigger = UNCalendarNotificationTrigger(dateMatching: datex, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    
+    func noti_show_t(x1: String, x2:String, x3:String, ttt:String)
+    {
+        
+        var rrr = ttt.components(separatedBy: ":")
+        if(rrr.count > 1)
+        {
+          
+        }
+        
+        
+        let content = UNMutableNotificationContent()
+        content.title = x1
+        content.subtitle = x2
+        content.body = x3
+        content.badge = 1
+        
+        var datex = DateComponents()
+        datex.hour = Int(rrr[0])
+        datex.minute = Int(rrr[1])
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: datex, repeats: true)
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        let request = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    
+// -------------------------------------------------------    
+// in the override func viewDidLoad() call this function
+// -------------------------------------------------------
+
+noti_ini()
+
+// -------------------------------------------------------
+// to show notification right away for 5 sec, use this function
+// -------------------------------------------------------
+
+var x1 = "title"
+var x2 = "subtitle"
+var x3 = "body"
+var ttt = "14:00"
+
+noti_show_t(x1: x1, x2: x2, x3: x3, ttt: ttt)
+
+// -------------------------------------------------------
+// to show notification in serting time use this function
+// -------------------------------------------------------
+
+var x1 = "title"
+var x2 = "subtitle"
+var x3 = "body"
+
+noti_show_t(x1: x1, x2: x2, x3: x3)
