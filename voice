@@ -1,0 +1,48 @@
+// -------------------------------------------------------
+// In the view controller file put this import
+// -------------------------------------------------------
+import AVFoundation
+
+
+// -------------------------------------------------------
+// put this function anywhere after the class, ex: class FirstViewController: UIViewController {
+// This function will play the sound in the background too
+// -------------------------------------------------------
+ func playAudio(name_file:String)
+    {
+            // this is to set the url of the audio
+            let audioURL = NSURL(fileURLWithPath: Bundle.main.path(forResource: name_file, ofType: "mp3")!)
+
+            do
+            {
+                if(active == 0)
+                {
+                    audioPlayer = try AVAudioPlayer(contentsOf: audioURL as URL)
+                    audioPlayer!.delegate = self as? AVAudioPlayerDelegate
+                    if (audioPlayer!.prepareToPlay())
+                    {
+                        audioPlayer!.play()
+                        active = 1
+                    }
+                }
+            }
+            catch
+            { }
+            
+            // background sound
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .allowAirPlay])
+                //print("Playback OK")
+                try AVAudioSession.sharedInstance().setActive(true)
+                //print("Session is Active")
+            } catch {
+                //print(error)
+            }
+    }
+    
+    
+// -------------------------------------------------------
+// to play mp3 file use this function with the mp3 file for example to play this file [athan_note.mp3] wite the name only, ex, name: athan_note
+// -------------------------------------------------------
+
+playAudio(name_file:"athan_note")
