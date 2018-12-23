@@ -1,1 +1,62 @@
+// -------------------------------------------------------
+// In the view controller file put this import
+// -------------------------------------------------------
+import CoreLocation
 
+// -------------------------------------------------------
+// In the file: info.plist add thow rows:
+// Privacy - Location When In Use Usage Description --> "Your location will be used to help you find the best road."
+// Privacy - Location Always and When In Use Usage Description --> "The app will notifiy you when you enter or leave the Masjid."
+// -------------------------------------------------------
+
+// -------------------------------------------------------
+// Add ,CLLocationManagerDelegate to the class, ex: class FirstViewController: UIViewController, CLLocationManagerDelegate {
+// -------------------------------------------------------
+
+// -------------------------------------------------------
+// put this function anywhere after the class
+// -------------------------------------------------------
+
+let x:CLLocationManager = CLLocationManager() 
+
+  func sbr_location()
+  {
+    x.delegate = self                  
+    x.requestAlwaysAuthorization()
+    x.startUpdatingLocation()          
+    //x.distanceFilter = 100 /*CL: distance after every 100 meter*/
+    //x.stopUpdatingLocation()        
+    
+    let y:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(38.546561, -121.756242), radius: 25, identifier: "Islamic Center of Davis")
+    x.startMonitoring(for: y)
+   }
+   
+// -------------------------------------------------------    
+// in the override func viewDidLoad() call this function
+// -------------------------------------------------------
+
+sbr_location()
+
+// -------------------------------------------------------
+// pu these function inside the class and after viewDidLoad() function
+// -------------------------------------------------------
+
+    // ----------------------------------------------------------------------------------------------
+    // --------------------------------------- Locations --------------------------------------------
+    // ----------------------------------------------------------------------------------------------
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for x in locations{
+            print("\(index): \(x)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print( "Entred \(region.identifier)" )
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print( "Exited \(region.identifier)" )
+    }
+    // ----------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------------------
